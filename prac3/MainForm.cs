@@ -1,37 +1,27 @@
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
+using static System.Reflection.Metadata.BlobBuilder;
+
 namespace prac3
 {
     public partial class MainForm : Form
     {
+        Book[] books;
         public MainForm()
         {
             InitializeComponent();
 
-            Book[] books =
-            {
-                new Book()
-                {
-                    Author = "Сергей Лукьяненко",
-                    Title = "Лабиринт отражений",
-                    Year = 1997,
-                    Description = "Действие романа одновременно происходит в реальном Питере"
-                },
-                new Book()
-                {
-                    Author = "Сергей Лукьяненко",
-                    Title = "Лабиринт отражений",
-                    Year = 1997,
-                    Description = "Действие романа одновременно происходит в реальном Питере42424"
-                },
-                new Book()
-                {
-                    Author = "Сергей Лукьяненко",
-                    Title = "Лабиринт отражений",
-                    Year = 1997,
-                    Description = "Действие романа одновременно происходит в реальном Питере42424424"
-                }
-            };
 
-            for(int i=0;i<books.Length; i++)
+            String jsonString = File.ReadAllText("bookList.txt");
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };
+            books = JsonSerializer.Deserialize<Book[]>(jsonString, options);
+
+            for (int i = 0; i < books.Length; i++)
             {
                 BookControll control = new BookControll(books[i]);
                 control.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
@@ -40,9 +30,16 @@ namespace prac3
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };
+            String jsonString = JsonSerializer.Serialize(books, options);
+            File.WriteAllText("bookList.txt", jsonString);
         }
     }
 }

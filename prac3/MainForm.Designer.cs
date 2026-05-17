@@ -54,6 +54,7 @@
             Controls.Add(BookListTableLayout);
             Name = "MainForm";
             Text = "Книги на легкое чтение";
+            FormClosing += MainForm_FormClosing;
             ResumeLayout(false);
         }
 

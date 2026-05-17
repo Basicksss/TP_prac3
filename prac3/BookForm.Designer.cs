@@ -41,16 +41,6 @@
             ((System.ComponentModel.ISupportInitialize)CoverPictureBox).BeginInit();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Автор";
-            label1.Click += label1_Click;
-            // 
             // AuthorTextBox
             // 
             AuthorTextBox.Location = new Point(12, 27);
@@ -82,16 +72,6 @@
             label3.Size = new Size(73, 15);
             label3.TabIndex = 4;
             label3.Text = "Год издания";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(12, 205);
-            label4.Name = "label4";
-            label4.Size = new Size(62, 15);
-            label4.TabIndex = 5;
-            label4.Text = "Описание";
-            label4.Click += label4_Click;
             // 
             // YearTextBox
             // 

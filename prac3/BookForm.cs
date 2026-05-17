@@ -25,16 +25,6 @@ namespace prac3
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             currentBook.Author  = AuthorTextBox.Text;
@@ -42,6 +32,9 @@ namespace prac3
             currentBook.Year = Convert.ToInt32(YearTextBox.Text);
             currentBook.Description = DescriptionTextBox.Text;
             currentBook.Cover = CoverPictureBox.BackgroundImage;
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void CoverPictureBox_Click(object sender, EventArgs e)
